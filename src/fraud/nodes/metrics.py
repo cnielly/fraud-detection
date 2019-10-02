@@ -2,6 +2,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
+from sklearn.metrics import average_precision_score
 from imblearn import metrics
 
 def compute_metrics(y_test, y_pred, average='weighted'):
@@ -21,5 +22,6 @@ def compute_metrics(y_test, y_pred, average='weighted'):
     res.append(sensitivity_score(y_test, y_pred, average=average))
     res.append(specificity_score(y_test, y_pred, average=average))
     res.append(geometric_mean_score(y_test, y_pred, average=average))
+    res.append(average_precision_score(y_test, y_pred, average=weighted))
 
     return res
