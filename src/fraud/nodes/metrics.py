@@ -1,8 +1,5 @@
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.metrics import f1_score
-from imblearn import metrics
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from imblearn.metrics import sensitivity_score, specificity_score, geometric_mean_score
 
 def compute_metrics(y_test, y_pred, average='weighted'):
     """
