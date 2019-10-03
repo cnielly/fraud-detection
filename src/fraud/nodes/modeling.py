@@ -16,8 +16,8 @@ def sampling(X_train, y_train, X_test, y_test, sampling_instances, model_instanc
     :input sampling_instance: list of instances of sampling methods (tested for all methods of Imblearn)
     :input model_instances: list of instances of models (from SKLearn or with SKLearn API)
     :input func: function to compute metrics - either compute_metrics or compute_main_metrics
-    s
-    :output metrics: nested list of metrics, with order Sampling1- Method1, Sampling1_model2, sampling1_model3....
+    
+    :output metrics: pd.Dataframe with metrics as column and model_x_sampling 
     """
     
     metrics = []
