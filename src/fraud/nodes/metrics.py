@@ -12,18 +12,19 @@ def compute_metrics(y_test, y_pred, average='weighted', return_index=False):
 
     :output red: list of value for metrics, in order - Accuracy - Precision - Recall - F1 Score - Sensitivity - Specifity
     """
-    res = []
-    res.append(accuracy_score(y_test, y_pred))
-    res.append(precision_score(y_test, y_pred, average=average))
-    res.append(recall_score(y_test, y_pred, average=average))
-    res.append(f1_score(y_test, y_pred, average=average))
-    res.append(sensitivity_score(y_test, y_pred, average=average))
-    res.append(specificity_score(y_test, y_pred, average=average))
-    res.append(geometric_mean_score(y_test, y_pred, average=average))
-    res.append(average_precision_score(y_test, y_pred, average=average))
     if return_index:
         return ['accuracy', 'precision', 'recall', 'f1_score', 'sensitivity_score', 'specificity_score', 'geometric_mean_score', 'average_precision_score']
-    return res
+    else :
+    	res = []
+    	res.append(accuracy_score(y_test, y_pred))
+    	res.append(precision_score(y_test, y_pred, average=average))
+    	res.append(recall_score(y_test, y_pred, average=average))
+    	res.append(f1_score(y_test, y_pred, average=average))
+    	res.append(sensitivity_score(y_test, y_pred, average=average))
+    	res.append(specificity_score(y_test, y_pred, average=average))
+    	res.append(geometric_mean_score(y_test, y_pred, average=average))
+    	res.append(average_precision_score(y_test, y_pred, average=average))
+    	return res
 
 def compute_main_metrics(y_test, y_pred, average='weighted', return_index=False):
     """
@@ -34,11 +35,11 @@ def compute_main_metrics(y_test, y_pred, average='weighted', return_index=False)
 
     :output red: list of value for metrics, in order - Accuracy - Precision - Recall - F1 Score - Sensitivity - Specifity
     """
-    res = []
-    res.append(precision_score(y_test, y_pred, average=average))
-    res.append(recall_score(y_test, y_pred, average=average))
-    res.append(average_precision_score(y_test, y_pred, average=average))
-    if return_index:
+	if return_index:
         return ['precision', 'recall', 'average_precision_score']
-   
-    return res
+    else : 
+    	res = []
+    	res.append(precision_score(y_test, y_pred, average=average))
+    	res.append(recall_score(y_test, y_pred, average=average))
+    	res.append(average_precision_score(y_test, y_pred, average=average))
+    	return res
