@@ -35,7 +35,7 @@ def compute_main_metrics(y_test, y_pred, average='weighted', return_index=False)
 
     :output red: list of value for metrics, in order - Accuracy - Precision - Recall - F1 Score - Sensitivity - Specifity
     """
-	if return_index:
+    if return_index:
         return ['precision', 'recall', 'average_precision_score']
     else : 
     	res = []
