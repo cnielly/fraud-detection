@@ -8,7 +8,7 @@ def scaling(df, feats, scaler):
     Function to scale set of features using a scaler. Create new feature named 'scaled_' + Feature name
 
     :input df: pd.DataFrame to which apply scaling on
-    :input feats: list of variables to apply sclaing on
+    :input feats: list of variables to apply scaling on
     :input scaler: SK Learn scaling 
 
     :output df: df with new feature column and without initial features
