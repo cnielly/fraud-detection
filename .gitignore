@@ -1,5 +1,8 @@
 ##########################
 # KEDRO PROJECT
+#Notebooks
+*.ipynb
+
 
 # ignore all local configuration
 conf/local/**
