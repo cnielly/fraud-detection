@@ -7,7 +7,7 @@ from src.fraud.nodes.metrics import *
 
 
 
-def sampling(X_train, y_train, X_test, y_test sampling_instances, model_instances):
+def sampling(X_train, y_train, X_test, y_test, sampling_instances, model_instances):
     metrics = []
     # go through all sampling methods
     for sampling_instance in sampling_instances:
@@ -19,5 +19,5 @@ def sampling(X_train, y_train, X_test, y_test sampling_instances, model_instance
             print('fitting model' + str(model_instances.index(model_instance)))
             model_instance.fit(X_train, y_train)
             metrics.append(compute_metrics(y_test, model_instance.predict(X_test)))
-            
+
     return metrics
