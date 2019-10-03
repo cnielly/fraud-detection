@@ -3,7 +3,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from imblearn.metrics import sensitivity_score, specificity_score, geometric_mean_score
 
 
-def compute_metrics(y_test, y_pred, average='weighted'):
+def compute_metrics(y_test, y_pred, average='weighted', return_index=False):
     """
     Function computing metrics of interest for a sets of prediction
 
@@ -21,10 +21,11 @@ def compute_metrics(y_test, y_pred, average='weighted'):
     res.append(specificity_score(y_test, y_pred, average=average))
     res.append(geometric_mean_score(y_test, y_pred, average=average))
     res.append(average_precision_score(y_test, y_pred, average=average))
-
+    if return_index:
+        return ['accuracy', 'precision', 'recall', 'f1_score', 'sensitivity_score', 'specificity_score', 'geometric_mean_score', 'average_precision_score']
     return res
-	
-def compute_main_metrics(y_test, y_pred, average='weighted'):
+
+def compute_main_metrics(y_test, y_pred, average='weighted', return_index=False):
     """
     Function computing metrics of interest for a sets of prediction
 
@@ -37,5 +38,7 @@ def compute_main_metrics(y_test, y_pred, average='weighted'):
     res.append(precision_score(y_test, y_pred, average=average))
     res.append(recall_score(y_test, y_pred, average=average))
     res.append(average_precision_score(y_test, y_pred, average=average))
-
+    if return_index:
+        return ['precision', 'recall', 'average_precision_score']
+   
     return res
