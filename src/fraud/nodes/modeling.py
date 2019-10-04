@@ -24,14 +24,18 @@ def sampling(X_train, y_train, X_test, y_test, sampling_instances, model_instanc
     # go through all sampling methods
     for sampling_instance in sampling_instances:
         if sampling_instance is not None:
-            print('fitting sampling '+ str(sampling_instances.index(sampling_instance) + 1) + ' on ' +  str(len(sampling_instances)))
+            print('fitting sampling '+ str(sampling_instances.index(sampling_instance) + 1) + ' on ' +  
+                str(len(sampling_instances)), " : ", type(sampling_instance).__name__)
             X_train1, y_train1 = sampling_instance.fit_resample(X=X_train, y=y_train)
         else:
+            print('fitting sampling '+ str(sampling_instances.index(sampling_instance) + 1) + ' on ' +  
+                str(len(sampling_instances)), " : ", type(sampling_instance).__name__)
             X_train1, y_train1 = X_train, y_train
         
         # Go through all models
         for model_instance in model_instances:
-            print('fitting model ' + str(model_instances.index(model_instance) + 1) + ' on ' +  str(len(model_instances)))
+            print('fitting model ' + str(model_instances.index(model_instance) + 1) + ' on ' +  
+                str(len(model_instances)), " : ", type(model_instance).__name__)
             model_instance.fit(X_train1, y_train1)
             metrics.append(func(y_test, model_instance.predict(X_test)))
 
