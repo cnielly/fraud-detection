@@ -48,25 +48,6 @@ def sampling(X_train, y_train, X_test, y_test, sampling_instances, model_instanc
     return metrics
 
 
-#e.g. :
-"""
-LR = LogisticRegression(random_state=0, solver='lbfgs', multi_class='ovr')
-SVM = svm.LinearSVC()
-RF = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=0)
-
-NCL = NeighbourhoodCleaningRule()
-NM = NearMiss()
-ENN = EditedNearestNeighbours()
-
-models_instance = [LR, RF]
-undersamplings = [NCL, NM, ENN]
-
-output = sampling(X_train, y_train, X_test, y_test undersamplings, models_instance, compute_metrics)
-
-
-"""
-
-
 def double_sampling(X_train, y_train, X_test, y_test, sampling_instances1, sampling_instances2, model_instances, func):
     """
     Function to test different combination of sampling methods (over and under) on different models.
@@ -105,7 +86,7 @@ def adjusted_classes(y_scores, t):
     This function adjusts class predictions based on the prediction threshold (t)
 
     :input y_scores: pd.DataFrame or np.array of predicted probability
-    :input t: probability thresold
+    :input t: probability threshold
 
     :output: np.array of predicted label
     """
