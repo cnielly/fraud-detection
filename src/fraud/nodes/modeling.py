@@ -70,9 +70,9 @@ def double_sampling(X_train, y_train, X_test, y_test, sampling_instances1, sampl
 
     for sampling_instance1 in  sampling_instances1:
         if sampling_instance1 is not None:
-            print('fitting sampling1 '+ str(sampling_instances1.index(sampling_instance) + 1) + ' over ' +  str(len(sampling_instances1)))
+            print('fitting sampling1 '+ str(sampling_instances1.index(sampling_instance1) + 1) + ' over ' +  str(len(sampling_instances1)))
 
-            X_train_1st_round, y_train1st_round = sampling_instance.fit_resample(X=X_train, y=y_train)
+            X_train_1st_round, y_train1st_round = sampling_instance1.fit_resample(X=X_train, y=y_train)
         else:
             X_train1st_round, y_train1st_round = X_train, y_train
 
