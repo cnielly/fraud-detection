@@ -1,5 +1,5 @@
 from imblearn.metrics import sensitivity_score, specificity_score, geometric_mean_score 
-from imblearn.under_sampling import CondensedNearestNeighbour, EditedNearestNeighbours, RepeatedEditedNearestNeighbourghbours, AllKNN, InstanceHardnessThreshold, NearMiss, NeighbourhoodCleaningRule, RandomUnderSampler, TomekLinks
+from imblearn.under_sampling import CondensedNearestNeighbour, EditedNearestNeighbours, RepeatedEditedNearestNeighbours, AllKNN, InstanceHardnessThreshold, NearMiss, NeighbourhoodCleaningRule, RandomUnderSampler, TomekLinks
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
