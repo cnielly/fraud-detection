@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 
 from src.fraud.nodes.metrics import *
-
+import pandas as pd
 
 
 def sampling(X_train, y_train, X_test, y_test, sampling_instances, model_instances, func):
