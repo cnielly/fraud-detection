@@ -65,3 +65,46 @@ output = sampling(X_train, y_train, X_test, y_test undersamplings, models_instan
 
 
 """
+
+
+def double_sampling(X_train, y_train, X_test, y_test, sampling_instances1, sampling_instances2, model_instances, func):
+    """
+    Function to test different combination of sampling methods (over and under) on different models. 
+    For each combination of sampling methods and each model, it computes the set of metrics of metrics function 
+
+    :input X_train, y_train, X_test, y_test: np.array or pd.DataFrame of data
+    :input sampling_instance1: list of instances of sampling methods (tested for all methods of Imblearn) (1st round)
+    :input sampling_instance2: list of instances of sampling methods (tested for all methods of Imblearn) (2nd round)
+    :input model_instances: list of instances of models (from SKLearn or with SKLearn API)
+    :input func: function to compute metrics - either compute_metrics or compute_main_metrics
+    
+    :output metrics: pd.Dataframe with metrics as column and model_x_sampling 
+    """
+
+    list_of_df_metrics = []
+
+    for sampling_instance1 in  sampling_instances1:
+        if sampling_instance1 is not None:
+            print('fitting sampling1 '+ str(sampling_instances1.index(sampling_instance) + 1) + ' over ' +  str(len(sampling_instances1)))
+            
+            X_train_1st_round, y_train1st_round = sampling_instance.fit_resample(X=X_train, y=y_train)
+        else:
+            X_train1st_round, y_train1st_round = X_train, y_train
+
+        df_metrics = sampling(X_train1st_round, y_train1st_round, X_test, y_test, sampling_instances2, model_instances, func)
+
+        list_of_df_metrics.append(df_metrics)
+
+    df_metrics_all = pd.concat(list_of_df_metrics, keys=[type(x).__name__ for x in sampling_instances1], names=['First Sampling Round'])
+
+    return df_metrics_all
+
+
+
+
+
+
+
+
+
+
