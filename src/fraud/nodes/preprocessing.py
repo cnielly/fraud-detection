@@ -3,7 +3,7 @@ import pandas as pd
 
 
 
-def scaling(df, feats, scaler):
+def scaling(df: pd.DataFrame, feats=['Time','Amount'], scaler=RobustScaler()):
     """
     Function to scale set of features using a scaler. Create new feature named 'scaled_' + Feature name
 
@@ -28,7 +28,7 @@ def scaling(df, feats, scaler):
     return df
 
 
-def get_xy(df, target):
+def get_xy(df: pd.DataFrame, target='Class'):
     """
     Function to get X and y data
     :input df: pd.DataFrame to extract X and y data

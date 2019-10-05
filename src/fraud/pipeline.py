@@ -27,7 +27,11 @@
 # limitations under the License.
 """Pipeline construction."""
 
-from kedro.pipeline import Pipeline
+from kedro.pipeline import node, Pipeline
+from fraud.nodes.preprocessing import (
+    scaling,
+    get_xy,
+)
 
 # Here you can define your data-driven pipeline by importing your functions
 # and adding them to the pipeline as follows:
@@ -54,9 +58,9 @@ def create_pipeline(**kwargs):
 
     Returns:
         Pipeline: The resulting pipeline.
-
-    """
-
-    pipeline = Pipeline([])
-
+	"""
+    pipeline = Pipeline([
+	node(scaling, "credit_card", "scaled_credit_card", name="preprocess1"),
+	node(get_xy, "scaled_credit_card", "X, y", name="preprocess2"),
+	])
     return pipeline

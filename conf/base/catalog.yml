@@ -6,3 +6,7 @@
 credit_card:
   type: CSVLocalDataSet
   filepath: data/01_raw/creditcard.csv
+  
+scaled_credit_card:
+  type: CSVLocalDataSet
+  filepath: data/02_intermediate/scaled_credit_card.csv
