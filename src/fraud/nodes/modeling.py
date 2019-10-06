@@ -122,8 +122,6 @@ def model_thresold(X_train,y_train,X_test,t,model,**param):
     return y_pred
 
 
-
-
 ############### TO TEST ###############
 
 def tuning_sample_grid(X_train, y_train, X_test, y_test, model, nb_model, grid):
@@ -147,3 +145,42 @@ def tuning_sample_grid(X_train, y_train, X_test, y_test, model, nb_model, grid):
 
     print('Best average_precision_score is: ' + str(best_score))
     return best_grid
+
+
+############### TO TEST ###############
+
+# assymetric MSE. Performing well.
+def custom_asymmetric_train(y_test,y_pred):
+    residual = (y_test - y_pred).astype("float")
+    grad = np.where(residual<0, -2*residual, -2*10.0*residual)
+    hess = np.where(residual<0, 2, 2.0*10.0)
+    return grad, hess
+
+def custom_asymmetric_valid(y_test, y_pred):
+    residual = (y_test - y_pred).astype("float")
+    loss = np.where(residual < 0, (residual**2), (residual**2)*10.0) 
+    return "custom_asymmetric_eval", np.mean(loss), False
+
+# assymetric cross-entropy. Not performing well though
+C_FN = 200
+C_TP = 10
+C_FP = 20
+C_TN = 0
+
+def cross_entropy_cost_sensitive(y_test,y_pred):
+    if y_test == 1 :
+        result = C_FN*np.log(y_pred)+C_TP*np.log(1-y_pred)
+    else :
+        result = C_FP*np.log(1-y_pred)+C_TN*np.log(y_pred)
+    return result
+
+def custom_cross_ent_cs_train(y_test,y_pred):
+    grad = np.where(y_test == 1, C_FN/y_pred + C_TP/(1-y_pred), C_FP/(1-y_pred) + C_TN/y_pred)
+    hess = np.where(y_test == 1, -C_FN/(y_pred**2) - C_TP/((1-y_pred)**2), - C_FP/((1-y_pred)**2) - C_TN/(y_pred**2))
+    return grad,hess
+
+def custom_cross_ent_cs_valid(y_test,y_pred):
+    loss = cross_entropy_cost_sensitive(y_test,y_pred)
+    return "custom_cross_ent_cs_valid", np.mean(loss), False
+
+
