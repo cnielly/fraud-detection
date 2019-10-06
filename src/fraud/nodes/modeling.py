@@ -4,6 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
 import lightgbm as lgb
+import numpy as np
 
 from src.fraud.nodes.metrics import *
 import pandas as pd
