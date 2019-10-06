@@ -69,20 +69,23 @@ def double_sampling(X_train, y_train, X_test, y_test, sampling_instances1, sampl
     list_of_df_metrics = []
 
     for sampling_instance1 in  sampling_instances1:
+        print('First Round:')
         if sampling_instance1 is not None:
-            print('fitting sampling1 '+ str(sampling_instances1.index(sampling_instance1) + 1) + ' over ' +  str(len(sampling_instances1)))
-
+            print('fitting sampling of 1st round '+ str(sampling_instances1.index(sampling_instance1) + 1) + ' over ' +  str(len(sampling_instances1)) + ': ' + type(sampling_instance1).__name__)
             X_train_1st_round, y_train1st_round = sampling_instance1.fit_resample(X=X_train, y=y_train)
+            print('Second Round:')
         else:
-            X_train1st_round, y_train1st_round = X_train, y_train
+            print('No 1st round Sampling methods applied')
+            X_train_1st_round, y_train1st_round = X_train, y_train
 
-        df_metrics = sampling(X_train1st_round, y_train1st_round, X_test, y_test, sampling_instances2, model_instances, func)
+        df_metrics = sampling(X_train_1st_round, y_train1st_round, X_test, y_test, sampling_instances2, model_instances, func)
 
         list_of_df_metrics.append(df_metrics)
 
     df_metrics_all = pd.concat(list_of_df_metrics, keys=[type(x).__name__ for x in sampling_instances1], names=['First Sampling Round'])
 
     return df_metrics_all
+
 
 
 ############### TO TEST ###############
