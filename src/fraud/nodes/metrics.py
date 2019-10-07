@@ -90,25 +90,63 @@ def plot_confusion_matrix(y_true,y_pred, classes,
 
 
 
-def tuning_sample_grid(X_train, y_train, X_test, y_test, model, nb_model, grid):
+def tuning_sample_grid(X_train, y_train, X_test, y_test, model, grid):
+    """
+    Function computing the average precision score for a model and a set of parameters specified as a list of dict in grid. 
+    
+    :input X_train, y_train, X_test, y_test: pd.dataframe of np.array with eponym data
+    :input model: model from SKLearn or follwoing SKLearn API
+    :input grid: dict with parameters name as key and value as value
 
-    best_score = 0
-
-    #select a subset of models
-    Param_grid = random.choices(grid, k = nb_model)
-
+    :output scores: list cointainning scoress for each methods
+    """
+    scores = []
     #Loop to compute accuracy of each model
-    for i in range(nb_model):
-        grid_tested = Param_grid[i]
+    print(len(grid))
+    for i in range(len(grid)):
+        grid_tested = grid[i]
         print(grid_tested)
         model.set_params(**grid_tested)
         model.fit(X=X_train, y=y_train)
         y_preds = model.predict(X_test)
         score = average_precision_score(y_test, y_preds)
-        if score > best_score:
-            best_score = score
-            best_grid = grid_tested
+        scores.append(score)
+    return scores
 
-    print('Best average_precision_score is: ' + str(best_score))
-    return best_grid
+
+def score_grid_search(X, y, model, grid, k, folds, method1, method2):
+    """
+    Function comparing metrics across different parameters on the average precision score using a k-Fold cross validation 
+
+    :input X,y: pd.DataFrame or np.Array
+    :input model: model from SKLearn or follwoing SKLearn API
+    :input k: number of parameters to try
+    :input folds: number of folds
+    :input methods1, method2: oversampling/undersampling methods from ImbLearn or following similar API
+
+    :output final: list cointainning scoress for each methods
+    """
+    kf = KFold(n_splits=folds)
+    #select a subset of models
+    Param_grid = random.choices(grid, k=k)
+    
+    #print(len(Param_grid))
+    scores = []
+    for train_index, test_index in kf.split(X):
+        print('testing ')
+        X_train, X_test = X.loc[train_index,:], X.loc[test_index,:]
+        y_train, y_test = y[train_index], y[test_index]
+        
+        X_train, y_train = method1.fit_resample(X=X_train, y=y_train)
+        X_train, y_train = method2.fit_resample(X=X_train, y=y_train)
+        
+        scores.append(tuning_sample_grid(X_train=X_train, 
+                           y_train=y_train, 
+                           X_test=X_test, 
+                           y_test=y_test, 
+                           model=model,  
+                           grid=Param_grid))
+
+    final = pd.concat([pd.DataFrame(Param_grid).reset_index(inplace = True, drop = True), pd.DataFrame.from_records(scores).transpose().mean(axis=1).reset_index(inplace = True, drop = True)])
+    return final
 
