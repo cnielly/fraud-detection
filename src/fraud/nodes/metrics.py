@@ -152,5 +152,5 @@ def score_grid_search(X, y, model, grid, k, folds, method1, method2):
                            model=model,  
                            grid=Param_grid))
 
-    final = pd.concat([pd.DataFrame(Param_grid).reset_index(inplace = True, drop = True), pd.DataFrame.from_records(scores).transpose().mean(axis=1).reset_index(inplace = True, drop = True)])
+    final = pd.concat([pd.DataFrame(Param_grid), pd.DataFrame.from_records(scores).transpose().mean(axis=1)], axis = 1)
     return final
