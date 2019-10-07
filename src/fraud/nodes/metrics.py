@@ -86,3 +86,29 @@ def plot_confusion_matrix(y_true,y_pred, classes,
     plt.xlabel('Predicted label')
     plt.xlim([-0.5,1.5])
     plt.ylim([-0.5,1.5])
+
+
+
+
+def tuning_sample_grid(X_train, y_train, X_test, y_test, model, nb_model, grid):
+
+    best_score = 0
+
+    #select a subset of models
+    Param_grid = random.choices(grid, k = nb_model)
+
+    #Loop to compute accuracy of each model
+    for i in range(nb_model):
+        grid_tested = Param_grid[i]
+        print(grid_tested)
+        model.set_params(**grid_tested)
+        model.fit(X=X_train, y=y_train)
+        y_preds = model.predict(X_test)
+        score = average_precision_score(y_test, y_preds)
+        if score > best_score:
+            best_score = score
+            best_grid = grid_tested
+
+    print('Best average_precision_score is: ' + str(best_score))
+    return best_grid
+
