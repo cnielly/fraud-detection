@@ -1,7 +1,12 @@
 import pandas as pd
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, average_precision_score
+import sklearn as sk
+import numpy as np
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, average_precision_score,confusion_matrix
+from sklearn.model_selection import train_test_split, KFold, ParameterGrid
 from imblearn.metrics import sensitivity_score, specificity_score, geometric_mean_score
 
+import random
 import matplotlib.pyplot as plt
 import itertools
 import seaborn as sns
@@ -48,7 +53,7 @@ def compute_main_metrics(y_test, y_pred, average='weighted', return_index=False)
     	return res
 
 
-def plot_confusion_matrix(y_true,y_pred, classes,
+def plot_confusion_matrix(y_true,y_pred, classes=['Not Fraud','Fraud'],
                           title='Confusion matrix',
                           cmap=plt.cm.Reds):
     """
@@ -149,4 +154,3 @@ def score_grid_search(X, y, model, grid, k, folds, method1, method2):
 
     final = pd.concat([pd.DataFrame(Param_grid).reset_index(inplace = True, drop = True), pd.DataFrame.from_records(scores).transpose().mean(axis=1).reset_index(inplace = True, drop = True)])
     return final
-
