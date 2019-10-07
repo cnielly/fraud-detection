@@ -166,10 +166,10 @@ def custom_asymmetric_valid(y_test, y_pred):
     return "custom_asymmetric_eval", np.mean(loss), False
 
 # assymetric cross-entropy. Not performing well though
-C_FN = 200
-C_TP = 10
-C_FP = 20
-C_TN = 0
+#C_FN = 200
+#C_TP = 10
+#C_FP = 20
+#C_TN = 0
 
 def cross_entropy_cost_sensitive(y_test,y_pred):
     if y_test == 1 :
