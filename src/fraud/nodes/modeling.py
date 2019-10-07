@@ -102,7 +102,7 @@ def adjusted_classes(y_scores, t):
     """
     return [1 if y >= t else 0 for y in y_scores]
 
-def model_thresold(X_train,y_train,X_test,t,model,**param):
+def model_thresold(X_train,y_train,X_test,t,model,param):
     """
     This function predict class  based on  prediction threshold (t)
 
@@ -113,15 +113,15 @@ def model_thresold(X_train,y_train,X_test,t,model,**param):
     :output: np.array of predicted label
     """
     if model == 'randomforest':
-        rf = RandomForestClassifier(param)
+        rf = RandomForestClassifier(**param)
         rf.fit(X_train, y_train)
         y_pred = rf.predict_proba(X_test)
-        y_pred = adjusted_classes(y_pred,t)
+        y_pred = adjusted_classes(y_pred[:,1],t)
     else:
-        lgb_class = lgb.LGBMClassifier(param)
+        lgb_class = lgb.LGBMClassifier(**param)
         lgb_class.fit(X_train,y_train)
         y_pred = lgb_class.predict_proba(X_test)
-        y_pred = adjusted_classes(y_pred,t)
+        y_pred = adjusted_classes(y_pred[:,1],t)
 
     return y_pred
 
@@ -162,7 +162,7 @@ def custom_asymmetric_train(y_test,y_pred):
 
 def custom_asymmetric_valid(y_test, y_pred):
     residual = (y_test - y_pred).astype("float")
-    loss = np.where(residual < 0, (residual**2), (residual**2)*10.0) 
+    loss = np.where(residual < 0, (residual**2), (residual**2)*10.0)
     return "custom_asymmetric_eval", np.mean(loss), False
 
 # assymetric cross-entropy. Not performing well though
@@ -186,5 +186,3 @@ def custom_cross_ent_cs_train(y_test,y_pred):
 def custom_cross_ent_cs_valid(y_test,y_pred):
     loss = cross_entropy_cost_sensitive(y_test,y_pred)
     return "custom_cross_ent_cs_valid", np.mean(loss), False
-
-
