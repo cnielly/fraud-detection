@@ -108,7 +108,7 @@ def model_thresold(X_train,y_train,X_test,t,model,**param):
 
     :input X_train, y_train, X_test: np.array or pd.DataFrame of data
     :input t: probability threshold
-    :model: string 'lightgbm' or 'randomforest'
+    :input model: string 'lightgbm' or 'randomforest'
 
     :output: np.array of predicted label
     """
