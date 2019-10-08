@@ -2,15 +2,17 @@
 
 ## Introduction
 
-## Business approach of the problem
+## I. Business approach of the problem
 
-## Read the data
+## II. Read the data
 
-## Our data science approach
+## III. Our data science approach
 
-## Kedro
+## Conclusion
 
-### Overview
+## Bonus: Kedro
+
+### A. Overview
 
 This is your new Kedro project, which was generated using `Kedro 0.15.1` by running:
 
@@ -20,7 +22,7 @@ kedro new
 
 Take a look at the [documentation](https://kedro.readthedocs.io) to get started.
 
-### Rules and guidelines
+### B. Rules and guidelines
 
 In order to get the best out of the template:
  * Please don't remove any lines from the `.gitignore` file provided
@@ -29,7 +31,7 @@ In order to get the best out of the template:
  * Don't commit any credentials or local configuration to your repository
  * Keep all credentials or local configuration in `conf/local/`
 
-### Installing dependencies
+### C. Installing dependencies
 
 Dependencies have been be declared in `src/requirements.txt` for pip installation
 
@@ -39,7 +41,7 @@ To install them, run:
 kedro install
 ```
 
-### Running Kedro
+### D. Running Kedro
 
 You can run your Kedro project with:
 
@@ -48,7 +50,7 @@ kedro run
 ```
 
 
-### Working with Kedro from notebooks
+### E. Working with Kedro from notebooks
 
 In order to use notebooks in your Kedro project, you need to install Jupyter:
 
