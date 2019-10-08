@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This school project was completed by 5 students of the join degree *Data Science for Business*, between [Ecole polytechnique](https://www.polytechnique.edu/en) and [HEC Paris](https://www.hec.edu/en).
+This school project was completed by 5 students of the join degree *Data Science for Business*, between [Ecole polytechnique](https://www.polytechnique.edu/en) and [HEC Paris](https://www.hec.edu/en). 
 It was done for a course titled "Born2Code", in partnership with [Quinten](https://www.quinten-france.com/) (Data Science Consulting firm). 
 
 Fraud detection is an increasing center of focus since machine learning democratization. It has applications in various fields such as:
@@ -47,11 +47,11 @@ We worked on the famous Kaggle Dataset *Credit Card Fraud Detection*, that can b
 
 ## III. Our data science approach
 
-The majority of the code can be found in the /src/fraud/nodes folder.
+The majority of the code can be found in the `/src/fraud/nodes` folder.
 Each python file corresponds to a step of our process:
-- Preprocess the data (preprocessing.py file): the columns that were not obtained thanks to the PCA are standardized. Then we separate the X dataset (30 columns) of the y dataset (target column).
-- Find metrics to evaluate a pipeline performance (metrics.py file): in classification, there is a lot of metrics. Accuracy, Precision, Recall, 
-- Find the best pipeline (modeling.py file): 
+- Preprocess the data (`preprocessing.py` file): the columns that were not obtained thanks to the PCA are standardized. Then we separate the X dataset (30 columns) of the y dataset (target column).
+- Find metrics to evaluate a pipeline performance (`metrics.py` file): in classification, there is a lot of metrics. Accuracy, Precision, Recall, 
+- Find the best pipeline (`modeling.py` file): 
 
 After testing more than 650 combinations, we opted for the following pipeline:
 - Partial undersampling using One Sided Selection (research paper [here](URLICI))).
