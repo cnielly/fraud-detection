@@ -126,6 +126,12 @@ For using Jupyter Lab, you need to install it:
 pip install jupyterlab
 ```
 
+For using Kedro, you need to install it:
+
+```
+pip install kedro-viz
+```
+
 After installing Jupyter, you can start a local notebook server:
 
 ```
@@ -142,4 +148,8 @@ And if you want to run an IPython session:
 
 ```
 kedro ipython
+```
+You can also visualise the pipeline using:
+```
+kedro viz
 ```
