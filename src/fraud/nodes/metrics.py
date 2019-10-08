@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import itertools
 import seaborn as sns
 
-def compute_metrics(y_test, y_pred, average='weighted', return_index=False):
+def compute_metrics(y_test, y_pred, y_proba=None, average='weighted', return_index=False):
     """
     Function computing metrics of interest for a sets of prediction
 
@@ -31,10 +31,11 @@ def compute_metrics(y_test, y_pred, average='weighted', return_index=False):
     	res.append(sensitivity_score(y_test, y_pred, average=average))
     	res.append(specificity_score(y_test, y_pred, average=average))
     	res.append(geometric_mean_score(y_test, y_pred, average=average))
-    	res.append(average_precision_score(y_test, y_pred, average=average))
+        if y_proba is not None:
+    	   res.append(average_precision_score(y_test, y_proba, average=average))
     	return res
 
-def compute_main_metrics(y_test, y_pred, average='weighted', return_index=False):
+def compute_main_metrics(y_test, y_pred, y_proba=None, average='weighted', return_index=False):
     """
     Function computing metrics of interest for a sets of prediction
 
@@ -49,7 +50,8 @@ def compute_main_metrics(y_test, y_pred, average='weighted', return_index=False)
     	res = []
     	res.append(precision_score(y_test, y_pred, average=average))
     	res.append(recall_score(y_test, y_pred, average=average))
-    	res.append(average_precision_score(y_test, y_pred, average=average))
+    	if y_proba is not None:
+           res.append(average_precision_score(y_test, y_proba, average=average))
     	return res
 
 
@@ -113,7 +115,7 @@ def tuning_sample_grid(X_train, y_train, X_test, y_test, model, grid):
         print(grid_tested)
         model.set_params(**grid_tested)
         model.fit(X=X_train, y=y_train)
-        y_preds = model.predict(X_test)
+        y_preds = model.predict_proba(X_test)
         score = average_precision_score(y_test, y_preds)
         scores.append(score)
     return scores

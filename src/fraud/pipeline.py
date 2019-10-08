@@ -31,6 +31,7 @@ from kedro.pipeline import node, Pipeline
 from fraud.nodes.preprocessing import (
     scaling,
     get_xy,
+    get_xy_list
 )
 
 # Here you can define your data-driven pipeline by importing your functions
@@ -61,6 +62,6 @@ def create_pipeline(**kwargs):
 	"""
     pipeline = Pipeline([
 	node(scaling, "credit_card", "scaled_credit_card", name="Scaling features"),
-	node(get_xy_list, "scaled_credit_card", ["X", "y"] , name="Split X, y"),
+	node(get_xy_list, "scaled_credit_card", ["X", "y"] , name="Split X, y")
 	])
     return pipeline
