@@ -29,15 +29,15 @@ The challenge of a bank that deals with thousands of transactions each day is to
 
 The goal of this project is to build an fully automated pipeline that indicated whereas a transaction is a fraud or not. 
 We designed this pipeline avoiding to major pitfalls:
-1.  **A fraud flies beneath the radar** The fraud is not detected and the transaction order is accepted. The credit card needs to be
+1.  **A fraud flies beneath the radar.** The fraud is not detected and the transaction order is accepted. The credit card needs to be
 replaced, the client reassured and (eventually) refunded
-2.  **A normal transaction is labeled as fraud by mistake**The client credit card is blocked on an unfounded suspicion of fraud. The client cannot use his/her card properly. The credit card needs to be reactivated, the client reassured. 
+2.  **A normal transaction is labeled as fraud by mistake.** The client credit card is blocked on an unfounded suspicion of fraud. The client cannot use his/her card properly. The credit card needs to be reactivated, the client reassured. 
 
 To put it simple, we need to avoid **False Negatives** and **False Positives**. 
 
 ## II. Read the data
 
-We worked on the famous Kaggle Dataset *Credit Card Fraud Detection*, that can be found [here](https://www.kaggle.com/mlg-ulb/creditcardfraud).\n
+We worked on the famous Kaggle Dataset *Credit Card Fraud Detection*, that can be found [here](https://www.kaggle.com/mlg-ulb/creditcardfraud).<br/>
 This dataset is extremely imbalanced: only 0.17% of transactions are frauds. 
 
 ## III. Our data science approach
@@ -63,7 +63,7 @@ With our pipeline :
 Precision = 
 Recall = 
 
-**To go further**\n
+**To go further**<br/>
 To reach higher scores, one can design a custom loss
 
 ## Bonus: Kedro
