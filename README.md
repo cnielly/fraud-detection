@@ -29,32 +29,27 @@ The challenge of a bank that deals with thousands of transactions each day is to
 
 The goal of this project is to build an fully automated pipeline that indicated whereas a transaction is a fraud or not. 
 We designed this pipeline avoiding to major pitfalls:
-1.  **A fraud flies beneath the radar** The fraud is not detected and the
-transaction order is accepted. The credit card needs to be
-replaced, the client reassured and
-(eventually) refunded
-2.  **A normal transaction is labeled as fraud by mistake**The client credit card is blocked on
-an unfounded suspicion of fraud. The client cannot use his/her card
-properly. The credit card needs to be
-reactivated, the client reassured. 
+1.  **A fraud flies beneath the radar** The fraud is not detected and the transaction order is accepted. The credit card needs to be
+replaced, the client reassured and (eventually) refunded
+2.  **A normal transaction is labeled as fraud by mistake**The client credit card is blocked on an unfounded suspicion of fraud. The client cannot use his/her card properly. The credit card needs to be reactivated, the client reassured. 
 
-To put it simple, we need to avoid False Negatives and False Positives. 
+To put it simple, we need to avoid **False Negatives** and **False Positives**. 
 
 ## II. Read the data
 
-We worked on the famous Kaggle Dataset *Credit Card Fraud Detection*, that can be found [here](https://www.kaggle.com/mlg-ulb/creditcardfraud). 
-
+We worked on the famous Kaggle Dataset *Credit Card Fraud Detection*, that can be found [here](https://www.kaggle.com/mlg-ulb/creditcardfraud).\n
+This dataset is extremely imbalanced: only 0.17% of transactions are frauds. 
 
 ## III. Our data science approach
 
 The majority of the code can be found in the `/src/fraud/nodes` folder.
 Each python file corresponds to a step of our process:
 - Preprocess the data (`preprocessing.py` file): the columns that were not obtained thanks to the PCA are standardized. Then we separate the X dataset (30 columns) of the y dataset (target column).
-- Find metrics to evaluate a pipeline performance (`metrics.py` file): in classification, there is a lot of metrics. Accuracy, Precision, Recall, 
-- Find the best pipeline (`modeling.py` file): 
+- Find metrics to evaluate a pipeline performance (`metrics.py` file): in classification, there is a lot of metrics. Accuracy, Precision, Recall, Specificity, Geometric Mean, F1-Sore... They all have their pros and cons, and their explanability. We decided to focus on the average_precision_score to select our model. 
+- Find the best pipeline (`modeling.py` file): in this file you will find all the functions needed to test several pipelines and compare them. Data modification (undersampling, oversampling), algorithm modification (thresholds, weights) and fine-tuning (grid search on hyperparameters).
 
 After testing more than 650 combinations, we opted for the following pipeline:
-- Partial undersampling using One Sided Selection (research paper [here](URLICI))).
+- Partial undersampling using One Sided Selection (research paper [here]( https://sci2s.ugr.es/keel/pdf/algorithm/congreso/kubat97addressing.pdf)).
 - Partial oversampling using SMOTE.
 - LightGBM Classifier.
 
