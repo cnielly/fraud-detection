@@ -56,15 +56,16 @@ After testing more than 650 combinations, we opted for the following pipeline:
 ## Conclusion
 
 With a greedy algorithm (Logistic Regression on raw data):
-Precision = 
-Recall = 
+$$Precision = \frac{TP}{TP+FP} = 0.87$$.<br/>
+$$Recall = \frac{TP}{TP+FN} = 0.64$$
 
 With our pipeline : 
-Precision = 
-Recall = 
+$$Precision = \frac{TP}{TP+FP} = 0.87$$.<br/>
+$$Recall = \frac{TP}{TP+FN} = 0.64$$
 
 **To go further**<br/>
 To reach higher scores, one can design a custom loss
+$$Precision = \frac{TP}{TP+FP} = 0.87$$.<br/>
 
 ## Bonus: Kedro
 
