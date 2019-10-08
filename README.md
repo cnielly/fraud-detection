@@ -2,6 +2,18 @@
 
 ## Introduction
 
+This school project was completed by 5 students of the join degree Data Science for Business, between Ecole polytechnique and HEC Paris.
+It was done for a course titled "Born2Code", in partnership with [Quinten](https://www.quinten-france.com/) (Data Science Consulting firm). 
+
+Fraud detection is an increasing center of focus since machine learning democratization. It has applications in various fields such as:
+ecommerce, platform, social networks, insurances or banks. The implied costs are always consequent and the
+patterns difficult to detect, even harder to automatically detect…
+
+One of the main challenges in this specific problematic is to deal with highly imbalanced
+datasets: imagine the number of credit card transaction per day, the large part of them is obviously not
+fraudulent, which infringes us to reach a balanced dataset, as in other ML problematics. This case study is
+centered on existing methods to tackle this problem.
+
 ## I. Business approach of the problem
 
 ## II. Read the data
