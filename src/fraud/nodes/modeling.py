@@ -5,6 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
 import lightgbm as lgb
 import numpy as np
+from scipy.misc import derivative
 
 from src.fraud.nodes.metrics import *
 import pandas as pd
@@ -162,4 +163,16 @@ def custom_cross_ent_cs_valid(y_test,y_pred):
     loss = cross_entropy_cost_sensitive(y_test,y_pred)
     return "custom_cross_ent_cs_valid", np.mean(loss), False
 
+
+def focal_loss_lgb(y_true, y_pred, alpha, gamma):
+    a,g = alpha, gamma
+    def fl(x,t):
+        p = 1/(1+np.exp(-x))
+        return -( a*t + (1-a)*(1-t) ) * (( 1 - ( t*p + (1-t)*(1-p)) )**g) * ( t*np.log(p)+(1-t)*np.log(1-p) )
+    partial_fl = lambda x: fl(x, y_true)
+    grad = derivative(partial_fl, y_pred, n=1, dx=1e-6)
+    hess = derivative(partial_fl, y_pred, n=2, dx=1e-6)
+    return grad, hess
+
+focal_loss = lambda x,y: focal_loss_lgb(x, y, 0.25, 1.)
 

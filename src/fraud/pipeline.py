@@ -60,7 +60,7 @@ def create_pipeline(**kwargs):
         Pipeline: The resulting pipeline.
 	"""
     pipeline = Pipeline([
-	node(scaling, "credit_card", "scaled_credit_card", name="preprocess1"),
-	node(get_xy, "scaled_credit_card", "X, y", name="preprocess2"),
+	node(scaling, "credit_card", "scaled_credit_card", name="Scaling features"),
+	node(get_xy_list, "scaled_credit_card", ["X", "y"] , name="Split X, y"),
 	])
     return pipeline

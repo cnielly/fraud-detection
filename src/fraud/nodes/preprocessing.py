@@ -38,3 +38,14 @@ def get_xy(df: pd.DataFrame, target='Class'):
     y = df[target]
     return X, y
     
+def get_xy_list(df: pd.DataFrame, target='Class'):
+    """
+    Function to get X and y data
+    :input df: pd.DataFrame to extract X and y data
+    :input target: string of target name to create y 
+    """
+    X = df.drop(target, axis=1)
+    y = df[target]
+    return [X, y]
+
+
