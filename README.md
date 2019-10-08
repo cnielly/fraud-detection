@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This school project was completed by 5 students of the join degree Data Science for Business, between Ecole polytechnique and HEC Paris.
+This school project was completed by 5 students of the join degree *Data Science for Business*, between [Ecole polytechnique](https://www.polytechnique.edu/en) and [HEC Paris](https://www.hec.edu/en).
 It was done for a course titled "Born2Code", in partnership with [Quinten](https://www.quinten-france.com/) (Data Science Consulting firm). 
 
 Fraud detection is an increasing center of focus since machine learning democratization. It has applications in various fields such as:
@@ -16,7 +16,16 @@ centered on existing methods to tackle this problem.
 
 ## I. Business approach of the problem
 
+The goal of this project is to help a bank to detect fraudulent credit card transactions. We think this is a major issue for banks for four main reasons:
+1.  **The loss of money:** credit card replacement, refund, administrative costs... Banks are loosing huge amounts of money each year because of undetected frauds. In our dataset, we estimated this loss at $ 11 milions per year (= fraud amount / 2 * 365).
+2.  **The customer experience:** having your money stolen sucks, and this is why banks need to detect frauds as soon as possible, before the transaction is confirmed. Customers are expecting safety and reactivity on that topic. 
+3.  **Justice:** as part of the economical and the societal environment of a country, we think that banks are willing to fight against fraud and theft.It is important for bank to stay aligned with their values. 
+4.  **Political credibility:** banks' reputation with regulation authorities is at stake here. Who wants to trust a bank whose customers are being stolen?
+
 ## II. Read the data
+
+We worked on the famous Kaggle Dataset *Credit Card Fraud Detection*, that can be found [here](https://www.kaggle.com/mlg-ulb/creditcardfraud). 
+
 
 ## III. Our data science approach
 
