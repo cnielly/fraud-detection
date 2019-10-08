@@ -54,7 +54,9 @@ After testing more than 650 combinations, we opted for the following pipeline:
 - LightGBM Classifier.
 
 ## Conclusion
-
+```math
+SE = \frac{\sigma}{\sqrt{n}}
+```
 With a greedy algorithm (Logistic Regression on raw data):
 
 $$Precision = \frac{TP}{TP+FP} = 0.87$$.<br/>
