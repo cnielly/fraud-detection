@@ -10,3 +10,12 @@ credit_card:
 scaled_credit_card:
   type: CSVLocalDataSet
   filepath: data/02_intermediate/scaled_credit_card.csv
+
+X:
+  type: CSVLocalDataSet
+  filepath: data/02_intermediate/X.csv
+
+y:
+  type: CSVLocalDataSet
+  filepath: data/02_intermediate/y.csv
+
