@@ -57,20 +57,20 @@ After testing more than 650 combinations, we opted for the following pipeline:
 
 With a greedy algorithm (Logistic Regression on raw data):
 
-$`Precision = \frac{TP}{TP+FP} = 0.87`$.
+<img src="https://latex.codecogs.com/gif.latex?Precision&space;=&space;\frac{TP}{TP&plus;FP}&space;=&space;0.87" title="Precision = \frac{TP}{TP+FP} = 0.87" />
 
-$`Recall = \frac{TP}{TP+FN} = 0.64`$.
+<img src="https://latex.codecogs.com/gif.latex?Recall&space;=&space;\frac{TP}{TP&plus;FN}&space;=&space;0.64" title="Recall = \frac{TP}{TP+FN} = 0.64" />
 
 With our pipeline:
 
-$`Precision = \frac{TP}{TP+FP} = 0.87`$.
+<img src="https://latex.codecogs.com/gif.latex?Precision&space;=&space;\frac{TP}{TP&plus;FP}&space;=&space;0.87" title="Precision = \frac{TP}{TP+FP} = 0.87" />
 
-$`Recall = \frac{TP}{TP+FN} = 0.85`$
+<img src="https://latex.codecogs.com/gif.latex?Recall&space;=&space;\frac{TP}{TP&plus;FN}&space;=&space;0.85" title="Recall = \frac{TP}{TP+FN} = 0.85" />
 
 **To go further**<br/>
 To reach higher scores, one can design a custom loss
 
-$`Loss = y_{true}*\left[C_{FN}*log(y_{pred})+C_{TP}*log(1-y_{pred})\right]+(1-y_{true})*\left[C_{FP}*log(1-y_{pred})+C_{TN}*log(y_{pred})\right]`$
+<img src="https://latex.codecogs.com/gif.latex?Loss&space;=&space;y_{true}*\left[C_{FN}*log(y_{pred})&plus;C_{TP}*log(1-y_{pred})\right]&plus;(1-y_{true})*\left[C_{FP}*log(1-y_{pred})&plus;C_{TN}*log(y_{pred})\right]" title="Loss = y_{true}*\left[C_{FN}*log(y_{pred})+C_{TP}*log(1-y_{pred})\right]+(1-y_{true})*\left[C_{FP}*log(1-y_{pred})+C_{TN}*log(y_{pred})\right]" />
 
 ## Bonus: Kedro
 
